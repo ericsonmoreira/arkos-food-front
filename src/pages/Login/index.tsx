@@ -1,18 +1,21 @@
 import { yupResolver } from '@hookform/resolvers/yup';
-import { Button, Grid, TextField } from '@mui/material';
+import { Button, Grid } from '@mui/material';
 import { useState } from 'react';
-import { Controller, useForm } from 'react-hook-form';
+import { useForm } from 'react-hook-form';
+import { useHistory } from 'react-router';
+import TextFieldController from '../../components/TextFieldController';
 import { useAuth } from '../../context/AuthContext';
-import LoginLaytout from '../layouts/LoginLaytout';
 import schema from './schema';
 import { Container } from './styles';
-
+import routerNames from '../../routes/router.names';
 interface LoginFromData {
   email: string;
   password: string;
 }
 
 const Login: React.FC = () => {
+  const history = useHistory();
+
   const { signIn } = useAuth();
 
   const [loading, setLoading] = useState(false);
@@ -34,6 +37,8 @@ const Login: React.FC = () => {
       });
 
       console.log(data);
+
+      history.push(routerNames.PRODUCTS);
     } catch (error) {
       console.log(error);
     } finally {
@@ -42,52 +47,27 @@ const Login: React.FC = () => {
   };
 
   return (
-    <LoginLaytout>
-      <Container>
-        <form onSubmit={handleSubmit(onSubmit)}>
-          <Grid container spacing={2}>
-            <Grid item xs={12}>
-              <Controller
-                name="email"
-                control={control}
-                render={({ field, fieldState: { invalid, error } }) => (
-                  <TextField
-                    {...field}
-                    label="E-mail"
-                    variant="outlined"
-                    fullWidth
-                    error={invalid}
-                    helperText={error?.message}
-                  />
-                )}
-              />
-            </Grid>
-            <Grid item xs={12}>
-              <Controller
-                name="password"
-                control={control}
-                render={({ field, fieldState: { invalid, error } }) => (
-                  <TextField
-                    {...field}
-                    label="Senha"
-                    variant="outlined"
-                    fullWidth
-                    type="password"
-                    error={invalid}
-                    helperText={error?.message}
-                  />
-                )}
-              />
-            </Grid>
-            <Grid item xs={12}>
-              <Button type="submit" variant="contained" disabled={loading}>
-                Entrar
-              </Button>
-            </Grid>
+    <Container>
+      <form onSubmit={handleSubmit(onSubmit)}>
+        <Grid container spacing={2}>
+          <Grid item xs={12}>
+            <TextFieldController name="email" control={control} />
           </Grid>
-        </form>
-      </Container>
-    </LoginLaytout>
+          <Grid item xs={12}>
+            <TextFieldController
+              name="password"
+              control={control}
+              type="password"
+            />
+          </Grid>
+          <Grid item xs={12}>
+            <Button type="submit" variant="contained" disabled={loading}>
+              Entrar
+            </Button>
+          </Grid>
+        </Grid>
+      </form>
+    </Container>
   );
 };
 

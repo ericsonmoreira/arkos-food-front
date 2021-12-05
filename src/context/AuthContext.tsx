@@ -24,14 +24,14 @@ const AuthProvider: React.FC = ({ children }) => {
   const [token, setToken] = useLocalStorage<TokenState>(LH_TOKEN_NAME, null);
 
   const signIn = useCallback(async ({ username, password }: UserData) => {
-    const { data } = await autentication.login({
+    
+    // TODO: saber como colcoar aqui
+    await autentication.login({
       username,
       password
     });
 
-    const { token } = data;
-
-    setToken(token);
+    setToken('eyJhbGciOiJIUzI1NiIsInR');
   }, []);
 
   const signOut = useCallback(async () => {
