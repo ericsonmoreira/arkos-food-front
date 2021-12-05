@@ -1,6 +1,6 @@
 import { yupResolver } from '@hookform/resolvers/yup';
 import { Button, Grid, TextField } from '@mui/material';
-import { useForm } from 'react-hook-form';
+import { Controller, useForm } from 'react-hook-form';
 import LoginLaytout from '../layouts/LoginLaytout';
 import schema from './schema';
 import { Container } from './styles';
@@ -11,7 +11,7 @@ interface LoginFromData {
 }
 
 const Login: React.FC = () => {
-  const { handleSubmit } = useForm<LoginFromData>({
+  const { handleSubmit, control } = useForm<LoginFromData>({
     defaultValues: {
       email: '',
       password: ''
@@ -19,7 +19,10 @@ const Login: React.FC = () => {
     resolver: yupResolver(schema)
   });
 
-  const onSubmit = (data: LoginFromData) => console.log(data);
+  const onSubmit = (data: LoginFromData) => {
+    console.log(data);
+    console.log('onSubmit');
+  };
 
   return (
     <LoginLaytout>
@@ -27,10 +30,32 @@ const Login: React.FC = () => {
         <form onSubmit={handleSubmit(onSubmit)}>
           <Grid container spacing={2}>
             <Grid item xs={12}>
-              <TextField label="E-mail" variant="outlined" fullWidth />
+              <Controller
+                name="email"
+                control={control}
+                render={({ field }) => (
+                  <TextField
+                    {...field}
+                    label="E-mail"
+                    variant="outlined"
+                    fullWidth
+                  />
+                )}
+              />
             </Grid>
             <Grid item xs={12}>
-              <TextField label="Senha" variant="outlined" fullWidth />
+              <Controller
+                name="password"
+                control={control}
+                render={({ field }) => (
+                  <TextField
+                    {...field}
+                    label="Senha"
+                    variant="outlined"
+                    fullWidth
+                  />
+                )}
+              />
             </Grid>
             <Grid item xs={12}>
               <Button type="submit" variant="contained">
