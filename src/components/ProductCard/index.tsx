@@ -10,7 +10,10 @@ import {
 
 import { RatingWrapper } from './styles';
 import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
-import { ProductData, useShoppingCart } from '../../context/ShoppingCartContext';
+import {
+  ProductData,
+  useShoppingCart
+} from '../../context/ShoppingCartContext';
 
 interface ProductCardProps {
   data: ProductData;
@@ -19,10 +22,10 @@ interface ProductCardProps {
 const ProductCard: React.FC<ProductCardProps> = (props) => {
   const { data } = props;
 
-  const { shoppingCartProducts, setShoppingCartProducts} = useShoppingCart();
+  const { addShoppingCartProduct } = useShoppingCart();
 
   const handlerAddProdctInShoppingCart = () => {
-    setShoppingCartProducts([...shoppingCartProducts, data]);
+    addShoppingCartProduct(data);
   };
 
   return (

@@ -17,6 +17,7 @@ export interface ProductData {
 interface ShoppingCartContextState {
   shoppingCartProducts: ProductData[];
   setShoppingCartProducts: (value: ProductData[]) => void;
+  addShoppingCartProduct: (value: ProductData) => void;
 }
 
 const ShoppingCartContext = createContext<ShoppingCartContextState>(
@@ -28,9 +29,19 @@ const ShoppingCartProvider: React.FC = ({ children }) => {
     ProductData[]
   >('shoppingCartProducts', []);
 
+  const addShoppingCartProduct = (product: ProductData) => {
+    if (!shoppingCartProducts.some((item) => item.id === product.id)) {
+      setShoppingCartProducts([...shoppingCartProducts, product]);
+    }
+  };
+
   return (
     <ShoppingCartContext.Provider
-      value={{ shoppingCartProducts, setShoppingCartProducts }}
+      value={{
+        shoppingCartProducts,
+        setShoppingCartProducts,
+        addShoppingCartProduct
+      }}
     >
       {children}
     </ShoppingCartContext.Provider>
