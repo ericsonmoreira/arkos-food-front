@@ -31,7 +31,7 @@ const ProductCard: React.FC<ProductCardProps> = (props) => {
   const { data } = props;
 
   return (
-    <Card sx={{ maxWidth: 345, borderRadius: '20px' }}>
+    <Card sx={{ borderRadius: '20px' }}>
       <CardMedia component="img" height="200" image={data.image} />
       <CardContent>
         <Typography variant="h6" gutterBottom>
