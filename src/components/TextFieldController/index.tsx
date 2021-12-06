@@ -19,7 +19,6 @@ const TextFieldController: React.FC<TextFieldControllerProps & TextFieldProps> =
           <TextField
             {...field}
             {...rest}
-            label="E-mail"
             variant="outlined"
             fullWidth
             error={invalid}

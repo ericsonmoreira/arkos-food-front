@@ -38,11 +38,13 @@ const DashboardLayout: React.FC = ({ children }) => {
 
   const handleEditPerfil = () => {
     history.push(routerNames.EDIT_PERFIL);
+    handleClose();
   };
 
   const handleLogout = () => {
     signOut();
     history.push(routerNames.LOGIN);
+    handleClose();
   };
 
   return (

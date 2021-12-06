@@ -22,8 +22,8 @@ const Login: React.FC = () => {
 
   const { handleSubmit, control } = useForm<LoginFromData>({
     defaultValues: {
-      email: 'moreira.ericson@gmail.com',
-      password: 'senha'
+      email: '',
+      password: ''
     },
     resolver: yupResolver(schema)
   });
@@ -51,11 +51,12 @@ const Login: React.FC = () => {
       <form onSubmit={handleSubmit(onSubmit)}>
         <Grid container spacing={2}>
           <Grid item xs={12}>
-            <TextFieldController name="email" control={control} />
+            <TextFieldController name="email" label="Email" control={control} />
           </Grid>
           <Grid item xs={12}>
             <TextFieldController
               name="password"
+              label="Senha"
               control={control}
               type="password"
             />
