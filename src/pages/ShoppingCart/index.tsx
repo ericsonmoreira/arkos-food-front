@@ -1,10 +1,10 @@
 import React from 'react';
-import useShoppingCart from '../../hooks/useShoppingCart';
+import { useShoppingCart } from '../../context/ShoppingCartContext';
 
 // import { Container } from './styles';
 
 const ShoppingCart: React.FC = () => {
-  const [shoppingCartProducts, setShoppingCartProducts] = useShoppingCart();
+  const { shoppingCartProducts } = useShoppingCart();
 
   return (
     <div>

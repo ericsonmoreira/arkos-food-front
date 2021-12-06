@@ -10,25 +10,20 @@ import {
 
 import { RatingWrapper } from './styles';
 import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
-
-interface ProductCardData {
-  title: string;
-  price: number;
-  description: string;
-  category: string;
-  image: string;
-  rating: {
-    rate: number;
-    count: number;
-  };
-}
+import { ProductData, useShoppingCart } from '../../context/ShoppingCartContext';
 
 interface ProductCardProps {
-  data: ProductCardData;
+  data: ProductData;
 }
 
 const ProductCard: React.FC<ProductCardProps> = (props) => {
   const { data } = props;
+
+  const { shoppingCartProducts, setShoppingCartProducts} = useShoppingCart();
+
+  const handlerAddProdctInShoppingCart = () => {
+    setShoppingCartProducts([...shoppingCartProducts, data]);
+  };
 
   return (
     <Card sx={{ borderRadius: '20px' }}>
@@ -61,6 +56,7 @@ const ProductCard: React.FC<ProductCardProps> = (props) => {
           size="large"
           startIcon={<AddShoppingCartIcon />}
           sx={{ borderRadius: '20px' }}
+          onClick={handlerAddProdctInShoppingCart}
         >
           {new Intl.NumberFormat('pt-BR', {
             style: 'currency',

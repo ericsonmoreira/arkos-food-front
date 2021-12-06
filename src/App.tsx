@@ -1,14 +1,17 @@
 import React from 'react';
 import { BrowserRouter } from 'react-router-dom';
 import { AuthProvider } from './context/AuthContext';
+import { ShoppingCartProvider } from './context/ShoppingCartContext';
 import Routes from './routes';
 
 const App: React.FC = () => {
   return (
     <AuthProvider>
-      <BrowserRouter>
-        <Routes />
-      </BrowserRouter>
+      <ShoppingCartProvider>
+        <BrowserRouter>
+          <Routes />
+        </BrowserRouter>
+      </ShoppingCartProvider>
     </AuthProvider>
   );
 };

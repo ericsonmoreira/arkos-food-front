@@ -1,5 +1,4 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-
 import useSWR, { SWRResponse, SWRConfiguration } from 'swr';
 import { AxiosRequestConfig } from 'axios';
 import api from '../api';
