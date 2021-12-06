@@ -19,14 +19,16 @@ const ShoppingCart: React.FC = () => {
           <ShoppingCartProductCard key={String(product.id)} data={product} />
         ))}
         <TotalPrice>
-          <Typography color="primary">
+          <Typography variant="h6" color="primary">
             Total:{' '}
             {new Intl.NumberFormat('pt-BR', {
               style: 'currency',
               currency: 'BRL'
             }).format(totalPrice)}
           </Typography>
-          <Button variant="contained">Comprar</Button>
+          <Button variant="contained" disabled={totalPrice === 0}>
+            Comprar
+          </Button>
         </TotalPrice>
       </Stack>
     </Container>
