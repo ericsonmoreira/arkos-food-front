@@ -34,7 +34,7 @@ const ProductCard: React.FC<ProductCardProps> = (props) => {
     <Card sx={{ borderRadius: '20px' }}>
       <CardMedia component="img" height="200" image={data.image} />
       <CardContent>
-        <Typography variant="h6" gutterBottom>
+        <Typography variant="h6" noWrap gutterBottom>
           {data.title}
         </Typography>
         <RatingWrapper>
@@ -43,7 +43,13 @@ const ProductCard: React.FC<ProductCardProps> = (props) => {
             ({data.rating.count})
           </Typography>
         </RatingWrapper>
-        <Typography variant="body2">{data.description}</Typography>
+        <Typography
+          variant="body2"
+          paragraph
+          sx={{ height: 100, overflowY: 'auto' }}
+        >
+          {data.description}
+        </Typography>
         <Typography variant="caption" color="#D4D9E6">
           Restam 15 unidades no estoque.
         </Typography>

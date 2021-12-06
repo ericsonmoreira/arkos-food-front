@@ -3,6 +3,7 @@ import DashboardLayout from '../layouts/DashboardLayout';
 import LoginLaytout from '../layouts/LoginLaytout';
 import Login from '../pages/Login';
 import Products from '../pages/Products';
+import ShoppingCart from '../pages/ShoppingCart';
 import NAMES from './router.names';
 import RouterWithLayout from './RouterWithLayout';
 
@@ -22,6 +23,13 @@ const Routes = () => {
         layout={DashboardLayout}
         path={NAMES.PRODUCTS}
         component={Products}
+        isPrivate
+        exact
+      />
+      <RouterWithLayout
+        layout={DashboardLayout}
+        path={NAMES.SHOPPING_CART}
+        component={ShoppingCart}
         isPrivate
         exact
       />
